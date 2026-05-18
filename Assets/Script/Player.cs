@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        float zSpeed = 5 * Time.deltaTime;
+        transform.Translate(0,0,zSpeed);
     }
 
     public void OnMove(InputValue value)
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
             Rigidbody rb = Tama.GetComponent<Rigidbody>();
             rb.AddForce(GAN.forward * TamaSpeed, ForceMode.Impulse);
             Destroy(Tama, 5f);
+
         }
     }
 }
