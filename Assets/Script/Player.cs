@@ -8,6 +8,17 @@ public class Player : MonoBehaviour
     public GameObject TamaPrefab;
 
     public float TamaSpeed = 20f;
+
+    [Header("***à⁄ìÆílÇÃê›íË")]
+    private Vector3 inputMoveVelocity;
+
+    [Header("***âÒì]é≤ÇÃê›íË")]
+    public bool tiltInvart = false;
+    public GameObject lookAxis;
+    public GameObject gyroAxis;
+    private Vector3 lookAngles;
+    private float gyroAngle;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +30,23 @@ public class Player : MonoBehaviour
     {
         float zSpeed = 5 * Time.deltaTime;
         transform.Translate(0,0,zSpeed);
+
+        lookAngles.x += inputMoveVelocity.y * (tiltInvart ? -1 : 1);
+        lookAngles.y += inputMoveVelocity.x;
+        gyroAngle += inputMoveVelocity.x;
+        
+
+        lookAngles = Vector3.Lerp(lookAngles,Vector3.zero, Time.deltaTime);
+        gyroAngle = Mathf.Lerp(gyroAngle,0, Time.deltaTime * 3);
+
+        lookAngles.x = Mathf.Clamp(lookAngles.x, -15, 15);
+        lookAngles.y = Mathf.Clamp(lookAngles.y, -15, 15);
+        gyroAngle = Mathf.Clamp(gyroAngle,-15, 15);
+
+        lookAxis. transform.eulerAngles = lookAngles;
+        gyroAxis.transform.eulerAngles = new Vector3(0,0, gyroAngle);
     }
+
 
     public void OnMove(InputValue value)
     {
@@ -42,6 +69,8 @@ public class Player : MonoBehaviour
         move.y = Mathf.Round(move.y);
 
         transform.Translate(move);
+
+        inputMoveVelocity = move;
     }
 
     public void OnAttack(InputValue value)
