@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
     private Vector3 lookAngles;
     private float gyroAngle;
 
+    [Header("***ÉoÉäÉAê›íË***")]
+    public GameObject barrire;
+    public MeshRenderer barrireRendere;
+    public bool barrireActivation;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -83,6 +88,18 @@ public class Player : MonoBehaviour
             rb.AddForce(GAN.forward * TamaSpeed, ForceMode.Impulse);
             Destroy(Tama, 5f);
 
+        }
+
+        void OnTriggerEnter(Collider collision)
+        {
+            if(!collision.transform.tag.Equals("Item/Barrire"))
+            {
+                Material m = barrireRendere.material;
+
+                barrireActivation = true;
+
+                m.SetInt("IsActive", 1);
+            }
         }
     }
 }

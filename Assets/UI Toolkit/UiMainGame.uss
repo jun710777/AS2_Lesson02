@@ -20,7 +20,7 @@
 }
 
 #score-container {
-	opacity: 1;
+	opacity: 0;
 	background-color: red;
 }
 
