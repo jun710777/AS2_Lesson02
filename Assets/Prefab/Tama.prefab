@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 478042311252184762}
   - component: {fileID: 1159313741262604870}
   - component: {fileID: 1300779839567797962}
+  - component: {fileID: -2625192137485326826}
   m_Layer: 0
   m_Name: Tama
   m_TagString: Untagged
@@ -140,3 +141,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-2625192137485326826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8178972471332588043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862499b11c61f38479e3e74cf0d9cf2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BaseBullet
